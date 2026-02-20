@@ -1,0 +1,15 @@
+target/
+node_modules/
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+*.class
+*.jar
+*.log
+.env
+dist/
+build/
+package-lock.json
+
