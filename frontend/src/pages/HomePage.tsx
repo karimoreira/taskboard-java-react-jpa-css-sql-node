@@ -129,7 +129,7 @@ function HomePage() {
   return (
     <>
       <div className="board-header">
-        <h1>Minhas Tarefas</h1>
+        <h1>Minhas tarefas</h1>
         <div className="board-header__actions">
           <span className="board-header__count">{tasks.length} cards</span>
           <button className="btn btn--create" onClick={handleCreateCard}>
