@@ -48,7 +48,6 @@ function KanbanColumn({ status, tasks, onEdit, onDelete, onMove, onQuickAdd }: K
         <div className="kanban-column__title">
           <span className={`kanban-column__dot kanban-column__dot--${statusClass}`} />
           <h3>{statusLabels[status]}</h3>
-          <span className="kanban-column__count">{tasks.length}</span>
         </div>
       </div>
 

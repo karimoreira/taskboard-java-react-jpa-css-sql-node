@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiCircle, FiLoader, FiCheckCircle } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { Task, TaskStatus, TaskPriority, TaskRequest } from '../types/Task';
 import { taskApi } from '../api/taskApi';
@@ -118,6 +118,10 @@ function HomePage() {
     setIsModalOpen(true);
   };
 
+  const pendingCount = columns[TaskStatus.PENDING].length;
+  const progressCount = columns[TaskStatus.IN_PROGRESS].length;
+  const completedCount = columns[TaskStatus.COMPLETED].length;
+
   if (loading) {
     return (
       <div className="board-loading">
@@ -128,10 +132,37 @@ function HomePage() {
 
   return (
     <>
-      <div className="board-header">
-        <h1>Minhas tarefas</h1>
-        <div className="board-header__actions">
-          <span className="board-header__count">{tasks.length} cards</span>
+      <div className="board-hero">
+        <div className="board-hero__left">
+          <h1 className="board-hero__title">Minhas tarefas</h1>
+          <p className="board-hero__subtitle">
+            Organize, priorize e acompanhe seu progresso pessoal
+          </p>
+        </div>
+        <div className="board-hero__right">
+          <div className="board-hero__stats">
+            <div className="stat-card stat-card--pending">
+              <div className="stat-card__icon"><FiCircle size={16} /></div>
+              <div className="stat-card__info">
+                <span className="stat-card__value">{pendingCount}</span>
+                <span className="stat-card__label">Pendentes</span>
+              </div>
+            </div>
+            <div className="stat-card stat-card--progress">
+              <div className="stat-card__icon"><FiLoader size={16} /></div>
+              <div className="stat-card__info">
+                <span className="stat-card__value">{progressCount}</span>
+                <span className="stat-card__label">Em progresso</span>
+              </div>
+            </div>
+            <div className="stat-card stat-card--completed">
+              <div className="stat-card__icon"><FiCheckCircle size={16} /></div>
+              <div className="stat-card__info">
+                <span className="stat-card__value">{completedCount}</span>
+                <span className="stat-card__label">Concluídas</span>
+              </div>
+            </div>
+          </div>
           <button className="btn btn--create" onClick={handleCreateCard}>
             <FiPlus size={16} />
             Criar Card
